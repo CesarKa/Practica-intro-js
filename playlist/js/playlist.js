@@ -47,7 +47,15 @@ const musicCatalog = () => {
    * Removes a playlist from the catalog.
    * @param {string} playlistName - The name of the playlist to remove.
    */
-    const removePlaylist = (playlistName) => {};
+    const removePlaylist = (playlistName) => {
+      const updatedPlaylists = playlists.filter(playlist => playlist.name !== playlistName);
+
+      if (updatedPlaylists.length !== playlists.length) {
+        playlists = updatedPlaylists;
+        console.log(`Playlist "${playlistName}" eliminada con éxito.`);
+      }
+      return updatedPlaylists
+    };
 
   /**
    * Adds a song to a specific playlist.
@@ -86,10 +94,15 @@ const musicCatalog = () => {
 
 const newCatalogo = musicCatalog();
 newCatalogo.createPlaylist('Gym');
+newCatalogo.createPlaylist('Cas');
+newCatalogo.createPlaylist('Tec');
 //console.log(newCatalogo)
 
 newCatalogo.getAllPlaylists();
 console.log(newCatalogo.getAllPlaylists())
+
+newCatalogo.removePlaylist('Cas');
+console.log(newCatalogo.removePlaylist());
 
 
 export default musicCatalog;
